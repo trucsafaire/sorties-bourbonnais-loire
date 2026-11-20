@@ -373,7 +373,7 @@ test("Le Truc de la semaine : au plus 48 requêtes sortantes par lot, une écrit
   const villes = [[46.566, 3.333], [48.857, 2.352], [43.296, 5.37], [45.764, 4.835], [47.218, -1.553], [43.604, 1.444], [50.629, 3.057], [48.573, 7.752], [44.837, -0.579], [47.322, 5.041]];
   for (let i = 0; i < 40; i++) { viderLimites(); const v = villes[i % villes.length];
     await inscrire(e, "n" + i + "@exemple.fr", { newsletter: true, prefs: { commune: { nom: "Ville" + i, dep: "03", lat: v[0], lon: v[1] }, rayon: 100 } }); }
-  await appel(e, "/admin/publish", { headers: admin, body: { id: "x1", event: { t: "<img src=x onerror=alert(1)>", cat: "fete", s: new Date(Date.now() + 2 * 864e5).toISOString().slice(0, 10), w: "Moulins", z: "03", lat: 46.566, lon: 3.333 } } });
+  await appel(e, "/admin/publish", { headers: admin, body: { id: "x1", event: { t: "<img src=x onerror=alert(1)>", cat: "fete", s: nl.semaine(new Date()).du, w: "Moulins", z: "03", lat: 46.566, lon: 3.333 } } });
   e.BREVO_KEY = "k"; let requetes = 0; const envoyes = [], vrai = globalThis.fetch;
   globalThis.fetch = async (u, o) => { requetes++; if (String(u).includes("brevo")) { envoyes.push(JSON.parse(o.body)); return new Response("{}", { status: 201 }); } return vrai(u, o); };
   const ecr = e.DLC.ecritures; let n1;
@@ -381,7 +381,7 @@ test("Le Truc de la semaine : au plus 48 requêtes sortantes par lot, une écrit
   assert.ok(requetes <= 48, requetes + " requêtes sortantes"); assert.ok(n1 > 0);
   assert.ok(e.DLC.ecritures - ecr <= 2, (e.DLC.ecritures - ecr) + " écritures KV");
   const html = envoyes.map(x => x.htmlContent).join("");
-  assert.ok(!html.includes("<img src=x"), "titre échappé"); assert.ok(html.includes("&lt;img") || !envoyes.length);
+  assert.ok(!html.includes("<img src=x"), "titre échappé"); assert.ok(envoyes.length > 0, "aucun envoi"); assert.ok(html.includes("&lt;img"), "la sortie de la semaine figure dans la lettre, titre échappé");
 });
 
 test("agenda automatique : abonnement iCalendar filtré par type et par cercle, valide et plié à 75 octets", async () => {

@@ -15,9 +15,24 @@ AUJ = dt.date.today()
 HORIZON = AUJ + dt.timedelta(days=130)
 API = "https://www.data.gouv.fr/api/1/datasets/5b598be088ee387c0c353714/"
 
-def get(url):
+def get(url, essais=4):
+    """Téléchargement avec nouvelles tentatives : une erreur passagère d'un serveur (504, connexion coupée)
+    ne doit pas faire échouer toute la mise à jour de la nuit."""
+    import time, urllib.error
     req = urllib.request.Request(url, headers={"User-Agent": "TrucsAFaire/1.0 (GitHub Actions; +https://trucsafaire.fr)", "Accept-Encoding": "identity"})
-    data = urllib.request.urlopen(req, timeout=600).read()
+    for n in range(essais):
+        try:
+            data = urllib.request.urlopen(req, timeout=600).read()
+            break
+        except urllib.error.HTTPError as e:
+            if e.code < 500 and e.code != 429 or n == essais - 1:
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError, OSError):
+            if n == essais - 1:
+                raise
+        attente = 30 * (n + 1)
+        print(f"  {url[:80]} : échec passager, nouvel essai dans {attente} s", flush=True)
+        time.sleep(attente)
     if data[:2] == b"\x1f\x8b":
         import gzip
         data = gzip.decompress(data)
