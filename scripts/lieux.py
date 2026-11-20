@@ -16,7 +16,18 @@ csv.field_size_limit(10**8)
 
 def ouvrir(url):
     req = urllib.request.Request(url, headers={"User-Agent": "TrucsAFaire/1.0 (GitHub Actions; +https://trucsafaire.fr)", "Accept-Encoding": "identity"})
-    return urllib.request.urlopen(req, timeout=900)
+    import time, urllib.error
+    for n in range(4):  # erreur passagère du serveur (5xx, 429, connexion coupée) : nouvel essai au lieu d'arrêter la mise à jour
+        try:
+            return urllib.request.urlopen(req, timeout=900)
+        except urllib.error.HTTPError as e:
+            if e.code < 500 and e.code != 429 or n == 3:
+                raise
+        except (urllib.error.URLError, TimeoutError, ConnectionError, OSError):
+            if n == 3:
+                raise
+        print(f"  {url[:80]} : échec passager, nouvel essai dans {30 * (n + 1)} s", flush=True)
+        time.sleep(30 * (n + 1))
 
 def norm(s):
     return unicodedata.normalize("NFD", (s or "").lower()).encode("ascii", "ignore").decode()
