@@ -2308,6 +2308,7 @@ function openCompte(raison,e){
     (login?'':'<div class="sbl-f"><label for="ac-w">Ma commune <span class="opt">(pour les sorties autour de chez vous)</span></label><input class="sbl-in" id="ac-w" list="sbl-cl" autocomplete="address-level2" placeholder="Decize, Moulins, Bourges…"></div>'+
       '<fieldset class="sbl-chips"><legend>Jusqu’à quelle distance ?</legend>'+RAYONS.map(r=>'<label><input type="radio" name="ac-r" value="'+r+'"'+(r===20?" checked":"")+'><span>'+r+' km</span></label>').join("")+'</fieldset>'+
       '<fieldset class="sbl-chips"><legend>Ce qui m’intéresse <span class="opt">(facultatif)</span></legend>'+Object.keys(CATS).filter(k=>k!=="pal").map(k=>'<label><input type="checkbox" name="ac-c" value="'+k+'"'+(cats.has(k)?" checked":"")+'><span>'+icon(k,15)+CATS[k][1]+'</span></label>').join("")+'</fieldset>'+
+      '<label class="sbl-nl"><input type="checkbox" id="ac-age" required><span><b>J’ai 15 ans ou plus.</b> Le compte Trucophile est réservé aux 15 ans et plus.</span></label>'+
       '<label class="sbl-nl"><input type="checkbox" id="ac-nl"><span>'+CONSENT_NL+'</span></label>')+
     '<p class="sbl-err" id="ac-err" role="alert"></p>'+
     '<div class="sbl-btns"><button class="sbl-btn go" type="submit" id="ac-go">'+(login?(APPLI?"Recevoir mon code de connexion":"Recevoir mon lien de connexion"):"Rejoindre les Trucophiles")+'</button></div>'+
@@ -2321,6 +2322,7 @@ function openCompte(raison,e){
   $("ac-f").onsubmit=async ev=>{ev.preventDefault();const err=$("ac-err"),go=$("ac-go");err.textContent="";
     const email=$("ac-e").value.trim().toLowerCase();
     if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)){err.textContent="Vérifiez l’adresse e-mail.";$("ac-e").focus();return}
+    if(!login&&!$("ac-age").checked){err.textContent="Le compte Trucophile est réservé aux personnes de 15 ans et plus : cochez la case pour continuer.";$("ac-age").focus();return}
     const body={email,cgu:!login,fav:FAV};
     if(!login){const wn=$("ac-w").value.trim();let commune;
       if(wn){await loadCommunes();const c=findCommune(wn);if(!c){err.textContent="Commune introuvable : choisissez-la dans la liste.";$("ac-w").focus();return}commune={nom:c[0],dep:c[1],lat:c[2],lon:c[3]}}

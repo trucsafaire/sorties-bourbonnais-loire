@@ -200,6 +200,7 @@ P["confidentialite.html"] = ("Politique de confidentialité", "Ce que le site en
 <ul class="sum">
 <li>Consulter les sorties ne demande ni compte ni donnée personnelle. Pas de cookie, pas de publicité ; une mesure d’audience anonyme et sans cookie peut être activée.</li>
 <li>Le compte Trucophile est facultatif : il ne demande qu’une adresse e-mail. Votre commune et vos centres d’intérêt sont facultatifs.</li>
+<li>Le compte Trucophile est réservé aux personnes de 15 ans et plus, âge à partir duquel on peut consentir seul au traitement de ses données en France (article 45 de la loi Informatique et Libertés). Si vous apprenez qu’un compte a été créé par un enfant de moins de 15 ans, écrivez-nous : nous le supprimerons.</li>
 <li>Le même compte sert aussi sur <a href="https://trucsdecathos.fr/">Trucs de cathos</a>, l’agenda catholique du même éditeur. Les préférences et favoris de chaque site sont rangés à part. Si vous vous connectez à Trucs de cathos, votre compte en garde trace (donnée sensible au sens de l’article 9 du RGPD) : cela n’arrive qu’avec votre accord exprès, donné en cochant une case, et sert uniquement à faire fonctionner ce service.</li>
 <li>La newsletter n’est envoyée qu’avec votre accord explicite, confirmé par e-mail, et se désactive en un clic.</li>
 <li>Vos données ne sont jamais vendues ni cédées. Vous pouvez les télécharger ou supprimer votre compte vous-même, à tout moment.</li>
