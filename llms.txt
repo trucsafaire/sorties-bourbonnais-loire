@@ -6,8 +6,8 @@ Le site s’adresse aux habitants et aux visiteurs qui se demandent « que faire
 
 ## Pages principales
 
-- [Agenda (liste, carte, calendrier)](https://trucsafaire.fr/index.html) : recherche en langage naturel, par exemple « brocantes ce week-end autour de Moulins »
-- [Que faire près de chez vous](https://trucsafaire.fr/que-faire/) : une page par département, par commune (au moins 3 sorties à venir) et par type de sortie, régénérées chaque nuit avec des données structurées schema.org Event
+- [Agenda (liste, carte, calendrier)](https://trucsafaire.fr/) : recherche en langage naturel, par exemple « brocantes ce week-end autour de Moulins »
+- [Que faire près de chez vous](https://trucsafaire.fr/que-faire/) : une page par département, par commune (au moins 3 sorties à venir) et par type de sortie, régénérées chaque nuit avec des données structurées schema.org Event. Adresses stables : https://trucsafaire.fr/que-faire/<departement>/ (ex. https://trucsafaire.fr/que-faire/allier/), https://trucsafaire.fr/que-faire/<commune>-<code département>/ (ex. https://trucsafaire.fr/que-faire/moulins-03/)
 - [Choisissez votre truc](https://trucsafaire.fr/offres.html) : comptes gratuits (Trucophile, Faiseur de trucs) et offres pour organisateurs et professionnels (Truc & Co, Truc Pro)
 
 ## Données et réutilisation
@@ -15,6 +15,12 @@ Le site s’adresse aux habitants et aux visiteurs qui se demandent « que faire
 - [API et widgets](https://trucsafaire.fr/api.html) : sorties et lieux en JSON, avec clé
 - [Mentions légales et sources](https://trucsafaire.fr/mentions-legales.html#sources) : chaque donnée reste sous la licence de son producteur (Licence Ouverte, ODbL…)
 - [Intelligence artificielle](https://trucsafaire.fr/intelligence-artificielle.html) : transparence sur l’usage de l’IA
+
+## Comment citer
+
+- Nommer le site « Trucs à faire » et donner le lien de la page consultée (de préférence la page de la commune ou du département).
+- Préciser la date de consultation : les sorties changent chaque jour.
+- Pour une sortie précise, indiquer aussi la source d’origine (office de tourisme, commune, organisateur) affichée sur la fiche.
 
 ## Optional
 

@@ -552,8 +552,8 @@ Le site s’adresse aux habitants et aux visiteurs qui se demandent « que faire
 
 ## Pages principales
 
-- [Agenda (liste, carte, calendrier)]({SITE}index.html) : recherche en langage naturel, par exemple « brocantes ce week-end autour de Moulins »
-- [Que faire près de chez vous]({SITE}que-faire/) : une page par département, par commune (au moins 3 sorties à venir) et par type de sortie, régénérées chaque nuit avec des données structurées schema.org Event
+- [Agenda (liste, carte, calendrier)]({SITE}) : recherche en langage naturel, par exemple « brocantes ce week-end autour de Moulins »
+- [Que faire près de chez vous]({SITE}que-faire/) : une page par département, par commune (au moins 3 sorties à venir) et par type de sortie, régénérées chaque nuit avec des données structurées schema.org Event. Adresses stables : {SITE}que-faire/<departement>/ (ex. {SITE}que-faire/allier/), {SITE}que-faire/<commune>-<code département>/ (ex. {SITE}que-faire/moulins-03/)
 - [Choisissez votre truc]({SITE}offres.html) : comptes gratuits (Trucophile, Faiseur de trucs) et offres pour organisateurs et professionnels (Truc & Co, Truc Pro)
 
 ## Données et réutilisation
@@ -561,6 +561,12 @@ Le site s’adresse aux habitants et aux visiteurs qui se demandent « que faire
 - [API et widgets]({SITE}api.html) : sorties et lieux en JSON, avec clé
 - [Mentions légales et sources]({SITE}mentions-legales.html#sources) : chaque donnée reste sous la licence de son producteur (Licence Ouverte, ODbL…)
 - [Intelligence artificielle]({SITE}intelligence-artificielle.html) : transparence sur l’usage de l’IA
+
+## Comment citer
+
+- Nommer le site « Trucs à faire » et donner le lien de la page consultée (de préférence la page de la commune ou du département).
+- Préciser la date de consultation : les sorties changent chaque jour.
+- Pour une sortie précise, indiquer aussi la source d’origine (office de tourisme, commune, organisateur) affichée sur la fiche.
 
 ## Optional
 

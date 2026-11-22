@@ -91,7 +91,7 @@ def page(titre, desc, canon, prof, corps, ld):
 {corps}
 </main>
 <footer class="foot"><nav aria-label="Liens">
-<a href="{r}que-faire/index.html">Trucs par département</a><a href="{r}plan-du-site.html">Plan du site</a><a href="{r}mentions-legales.html">Mentions légales</a><a href="{r}cgu.html">Conditions d’utilisation</a><a href="{r}confidentialite.html">Confidentialité</a><a href="{r}offres.html">Choisissez votre truc</a>
+<a href="{r}que-faire/">Trucs par département</a><a href="{r}plan-du-site.html">Plan du site</a><a href="{r}mentions-legales.html">Mentions légales</a><a href="{r}cgu.html">Conditions d’utilisation</a><a href="{r}confidentialite.html">Confidentialité</a><a href="{r}offres.html">Choisissez votre truc</a>
 </nav></footer>
 </body>
 </html>
@@ -177,7 +177,7 @@ def main():
                          key=lambda k: km(*centre[k], *centre[(w, z)]))[:8]
         titre = f"Que faire à {w} ? {n} sorties à venir · Trucs à faire"
         desc = f"Brocantes, fêtes, concerts, expos et sorties en famille à {w} ({d['nom']}) : {n} sorties à venir, mises à jour chaque nuit. Gratuit, sans inscription."
-        corps = (f'<nav class="fil" aria-label="Fil d’Ariane"><a href="{r}que-faire/index.html">Que faire ?</a> › <a href="{r}{url_d[z]}">{e_(d["nom"])}</a> › {e_(w)}</nav>'
+        corps = (f'<nav class="fil" aria-label="Fil d’Ariane"><a href="{r}que-faire/">Que faire ?</a> › <a href="{r}{url_d[z]}">{e_(d["nom"])}</a> › {e_(w)}</nav>'
                  f'<h1>Que faire à {e_(w)}&nbsp;?</h1><p class="lead"><b>{n}</b> sortie{"s" if n > 1 else ""} à venir à {e_(w)} ({e_(d["nom"])}) : {e_(resume)}. Mis à jour le {maj}.</p>'
                  f'<p class="qcta"><a class="qbtn" href="{r}index.html#dep={z}&amp;q={quote("autour de " + w)}">Voir sur la carte et le calendrier</a></p>'
                  f'<ul class="evl">{"".join(ligne(e, r) for e in evs[:MAX_LISTE])}</ul>'
@@ -236,9 +236,20 @@ def main():
         ecrire(url_d[z], page(titre, desc, url_d[z], 2, corps, ld))
     # Sommaire
     lignes = "".join(f'<li><a href="../{url_d[c]}">{e_(d["nom"])} <span>{len(par_dep.get(c, []))}</span></a></li>' for c, d in sorted(deps.items(), key=lambda x: slug(x[1]["nom"])))
-    corps = (f'<h1>Que faire près de chez vous&nbsp;?</h1><p class="lead">Les sorties à venir dans chaque département : brocantes, fêtes, concerts, expos, sorties en famille. Mis à jour le {maj}.</p>'
-             f'<ul class="vois deps">{lignes}</ul>')
-    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Que faire près de chez vous ?", "url": SITE + "que-faire/"}
+    nb = f"{len(tous):,}".replace(",", "\u202f"); nd = sum(1 for c in deps if par_dep.get(c))
+    faq = [("D’où viennent les sorties ?",
+            "Des agendas publiés en données ouvertes par les offices de tourisme (DATAtourisme), les communes, médiathèques et associations (OpenAgenda) et plusieurs collectivités, ainsi que des sorties proposées par les visiteurs, relues avant publication. Chaque fiche indique sa source."),
+           ("À quelle fréquence l’agenda est-il mis à jour ?", "Chaque nuit. Les sorties passées disparaissent et les nouvelles arrivent automatiquement."),
+           ("Faut-il un compte pour consulter les sorties ?", "Non, la consultation de l’agenda est gratuite et sans inscription."),
+           ("Les informations sont-elles garanties ?", "Non : un horaire ou un programme peut changer. Avant de vous déplacer, vérifiez auprès de l’organisateur grâce au lien présent sur chaque fiche.")]
+    corps = (f'<h1>Que faire près de chez vous&nbsp;?</h1><p class="lead">Trucs à faire recense {nb} sorties à venir dans {nd} départements : brocantes, fêtes, concerts, expos, sorties en famille. '
+             f'Choisissez votre département, puis une commune ou un type de sortie. Mis à jour le {maj}.</p>'
+             + f'<ul class="vois deps">{lignes}</ul>'
+             + '<h2>Questions fréquentes</h2>' + "".join(f"<h3>{e_(q)}</h3><p>{e_(a)}</p>" for q, a in faq))
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "CollectionPage", "name": "Que faire près de chez vous ?", "url": SITE + "que-faire/", "inLanguage": "fr-FR",
+         "isPartOf": {"@id": SITE + "#site"}, "publisher": {"@id": SITE + "#editeur"}},
+        {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]}]}
     ecrire("que-faire/", page("Que faire près de chez vous ? Sorties par département · Trucs à faire",
                               "Toutes les sorties de France par département et par commune : brocantes, fêtes, concerts, expos, sorties en famille.", "que-faire/", 1, corps, ld))
     jour = AUJ.isoformat()
