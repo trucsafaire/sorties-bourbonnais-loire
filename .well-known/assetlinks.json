@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "fr.trucsafaire.app",
+      "sha256_cert_fingerprints": [
+        "56:71:0C:D1:C8:01:C3:70:A0:FD:5E:93:41:CB:2A:47:0B:6F:8E:A9:37:87:6A:43:94:36:BA:A8:EE:92:EC:9F",
+        "6F:85:D3:21:55:CA:A1:D1:4E:48:C8:3F:BC:6D:41:D8:7E:B4:8A:2B:54:55:4F:E1:42:49:D7:51:6E:92:F4:0D"
+      ]
+    }
+  }
+]
