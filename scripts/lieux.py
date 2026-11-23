@@ -7,7 +7,7 @@ Sorties :
   data/lieux/index.json     nombre de lieux par département et par type
   data/_lieux_stats.json    contrôle : classes DATAtourisme rencontrées, lieux retenus ou écartés
 """
-import csv, glob, io, json, math, os, re, unicodedata, urllib.parse, urllib.request, datetime as dt
+import csv, glob, io, json, math, os, re, time, unicodedata, urllib.error, urllib.parse, urllib.request, datetime as dt
 from qualite_donnees import assainir, zones
 from collections import Counter, defaultdict
 
@@ -16,7 +16,6 @@ csv.field_size_limit(10**8)
 
 def ouvrir(url):
     req = urllib.request.Request(url, headers={"User-Agent": "TrucsAFaire/1.0 (GitHub Actions; +https://trucsafaire.fr)", "Accept-Encoding": "identity"})
-    import time, urllib.error
     for n in range(4):  # erreur passagère du serveur (5xx, 429, connexion coupée) : nouvel essai au lieu d'arrêter la mise à jour
         try:
             return urllib.request.urlopen(req, timeout=900)
