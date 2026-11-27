@@ -77,6 +77,7 @@ def page(titre, desc, canon, prof, corps, ld):
 <link rel="canonical" href="{SITE}{canon}">
 <meta property="og:title" content="{e_(titre)}"><meta property="og:description" content="{e_(desc)}"><meta property="og:type" content="website">
 <meta property="og:url" content="{SITE}{canon}"><meta property="og:image" content="{SITE}marque/partage-1200x630.png"><meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Trucs à faire"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{r}marque/icone-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{r}marque/apple-touch-icon-180.png">
 <link rel="stylesheet" href="{r}fonts/trucs.css">

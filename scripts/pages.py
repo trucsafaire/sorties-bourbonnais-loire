@@ -52,6 +52,9 @@ def page(fichier, titre, intro, corps):
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{titre} · Trucs à faire</title>
 <meta name="description" content="{html.escape(intro)}">
+<link rel="canonical" href="{SITE}{fichier}">
+<meta property="og:title" content="{titre} · Trucs à faire"><meta property="og:description" content="{html.escape(intro)}"><meta property="og:type" content="website">
+<meta property="og:url" content="{SITE}{fichier}"><meta property="og:image" content="{SITE}marque/partage-1200x630.png"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Trucs à faire">
 <link rel="icon" href="marque/icone-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="marque/apple-touch-icon-180.png">
 <link rel="stylesheet" href="fonts/trucs.css">

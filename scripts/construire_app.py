@@ -57,7 +57,7 @@ def site():
 <meta name="apple-mobile-web-app-title" content="Trucs à faire">
 <meta name="mobile-web-app-capable" content="yes">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Trucs à faire">
+<meta property="og:title" content="Trucs à faire · Les sorties près de chez vous">
 <meta property="og:image" content="{SITE}marque/partage-1200x630.png">
 <meta property="og:site_name" content="Trucs à faire">
 <meta name="twitter:card" content="summary_large_image">
